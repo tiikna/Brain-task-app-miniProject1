@@ -1,0 +1,9 @@
+version: 0.0
+Resources:
+  - myApp:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: brain-tasks-app
+        LoadBalancerInfo:
+          ContainerName: brain-tasks
+          ContainerPort: 3000
