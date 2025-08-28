@@ -24,9 +24,12 @@ phases:
       - docker build -t brain-tasks-app .
       - docker tag brain-tasks-app:latest 398317683879.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:latest
 
-  post_build:
+    post_build:
     commands:
       - echo Pushing Docker image...
       - docker push 398317683879.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:latest
-      - echo Deploying to EKS...
-      - kubectl apply -f k8s-deploy/deployment.yaml
+      - echo Updating kubeconfig for EKS...
+      - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-cluster
+      - echo Deploying manifests to EKS...
+      - kubectl apply -f k8s-deploy/deployment.yaml --validate=false
+      - kubectl apply -f k8s-deploy/service.yaml --validate=false
