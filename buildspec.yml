@@ -1,17 +1,17 @@
 version: 0.2
 
 phases:
-  install:
-    commands:
-      - echo Installing dependencies...
-      - npm install
-      - echo Installing kubectl...
-      - curl -Lo kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.27.10/2024-04-16/bin/linux/amd64/kubectl
-      - chmod +x ./kubectl
-      - mv ./kubectl /usr/local/bin/kubectl
-      - kubectl version --client
-      - echo Setting up kubeconfig...
-      - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-cluster
+  #install:
+  #  commands:
+  #    - echo Installing dependencies...
+  #    - npm install
+  #    - echo Installing kubectl...
+  #    - curl -Lo kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.27.10/2024-04-16/bin/linux/amd64/kubectl
+  #    - chmod +x ./kubectl
+  #    - mv ./kubectl /usr/local/bin/kubectl
+  #    - kubectl version --client
+  #    - echo Setting up kubeconfig...
+  #    - aws eks update-kubeconfig --region ap-south-1 --name brain-tasks-cluster
 
   pre_build:
     commands:
